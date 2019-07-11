@@ -3,17 +3,17 @@ services:
   - docker
 
 before_install:
-  - docker build -t junmiao/docker-react -f Dockerfile.dev .
+  - docker build -t junmiao/docker-react .
 
 script:
   - docker run -e CI=true junmiao/docker-react npm run test -- --coverage
 
 deploy:
   provider: elasticbeanstalk
-  region: "us-east-1"
+  region: "eu-west-1"
   app: "docker-react"
   env: "DockerReact-env"
-  bucket_name: "elasticbeanstalk-us-east-1-661195420224"
+  bucket_name: "elasticbeanstalk-eu-west-1-661195420224"
   bucket_path: "docker-react"
   on:
     branch: master
